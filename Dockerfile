@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install libconf \
-    && pip3 install numpy
+    && pip3 install numpy \
+    && mkdir /bld
 
 # Set up locale
 
@@ -22,10 +23,34 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
+# Cacti
+RUN cd /bld \
+    && git clone https://github.com/HewlettPackard/cacti.git \
+    && cd cacti \
+    && make \
+    && cp cacti /usr/local/bin
+
+
+# Accelergy
+
+RUN cd /bld \
+    && git clone https://github.com/nelliewu95/accelergy.git \
+    && cd accelergy \
+    && pip3 install . \
+    && cd .. \
+    && git clone https://github.com/nelliewu95/accelergy-aladdin-plug-in.git \
+    && cd accelergy-aladdin-plug-in \
+    && pip3 install . \
+    && cd .. \
+    && git clone https://github.com/nelliewu95/accelergy-cacti-plug-in.git \
+    && cd accelergy-cacti-plug-in \
+    && pip3 install . \
+    && cp -r /bld/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/ \
+    && cd ..
+
 # Build and install timeloop
 
-RUN mkdir bld \
-    && cd bld \
+RUN cd /bld \
     && git clone https://github.com/NVlabs/timeloop.git \
     && cd ./timeloop/src \
     && ln -s ../pat-public/src/pat . \
