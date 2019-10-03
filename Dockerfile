@@ -34,6 +34,8 @@ RUN mkdir bld \
     && cp build/timeloop /usr/local/bin \
     && cp build/evaluator /usr/local/bin
 
+COPY ./exercises /home/tutorial
+
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 
