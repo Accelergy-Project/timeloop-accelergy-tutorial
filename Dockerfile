@@ -1,17 +1,21 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y \
-    locales \
-    git \
-    scons \
-    libconfig++-dev \
-    libboost-dev \
-    libboost-iostreams-dev \
-    libboost-serialization-dev \
-    libyaml-cpp-dev \
-    libncurses5-dev \
-    python3-pip \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+               locales \
+               git \
+               scons \
+               g++ \
+               libconfig++-dev \
+               libboost-dev \
+               libboost-iostreams-dev \
+               libboost-serialization-dev \
+               libyaml-cpp-dev \
+               libncurses5-dev \
+               python3-pip \
     && rm -rf /var/lib/apt/lists/* \
+    && pip3 install setuptools \
+    && pip3 install wheel \
     && pip3 install libconf \
     && pip3 install numpy \
     && groupadd tutorial \
