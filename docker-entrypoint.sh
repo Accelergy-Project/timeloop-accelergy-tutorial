@@ -36,6 +36,10 @@ fi
 chown $USER_UID:$USER_GID /home/tutorial
 chmod 755 /home/tutorial
 
+if [ ! -e /home/tutorial/.nointro ]
+then
+    more /home/tutorial/exercises/README.md
+fi
 
 if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]
 then
