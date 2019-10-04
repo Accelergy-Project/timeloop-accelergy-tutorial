@@ -41,12 +41,11 @@ then
     more /home/tutorial/exercises/README.md
 fi
 
-if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]
+#if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]
+if [ "$@" != "bash" ] 
 then
-    # docker run bash -c 'echo hi'
-    exec bash "$@"
+    echo "Command: >>> $@ <<<"
+    exec "$@"
 fi
 
-cd /home/tutorial
-# exec "$@"
 exec su tutorial -s "/bin/bash" # -c "$@"
