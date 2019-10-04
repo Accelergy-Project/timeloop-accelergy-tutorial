@@ -48,6 +48,7 @@ RUN cd /bld \
     && cd accelergy-cacti-plug-in \
     && pip3 install . \
     && cp -r /bld/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/ \
+    && chmod 777 /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti \
     && cd ..
 
 # Build and install timeloop
