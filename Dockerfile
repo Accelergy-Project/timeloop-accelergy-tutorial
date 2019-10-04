@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install libconf \
     && pip3 install numpy \
+    && groupadd tutorial \
+    && useradd -m -d /home/tutorial -c "Tutorial User Account" -s /usr/sbin/nologin -g tutorial tutorial \
     && mkdir /bld
 
 # Set up locale

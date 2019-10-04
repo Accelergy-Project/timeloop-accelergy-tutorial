@@ -1,17 +1,22 @@
 #
 # Docker-compose file for running timeloop/accelergy
 #
-# Note: 
+# Notes: 
 #    The exercises are put in ./tutorial
+#    The exercises will be owned by $USER_UID:$USER_GID
 #
+
 # Run as follows:
 #
 #    1) Put this file in an otherwise empty directory
-#    2) Cd to that directory
-#    3) Run the following command:
+#    2) Change USER_UID and USER_GID to the desired owner of your files
+#    3) Cd to the directory containing this file
+#    4) Run the following command:
 #
 #        % docker-compose run --rm exercises 
-#        
+#
+#    5) Follow the directions in the exercise directories
+#    
 
 version: '3'
 
@@ -20,5 +25,8 @@ services:
     image: jsemer/timeloop-accelergy-tutorial:latest
     volumes:
       - ./tutorial:/home/tutorial
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
     stdin_open: true
     tty: true
