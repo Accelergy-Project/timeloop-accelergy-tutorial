@@ -4,12 +4,12 @@
 # Set UID/GID if not provided with enviromental variable(s).
 if [ -z "$USER_UID" ]; then
 	USER_UID=$(cat /etc/passwd | grep tutorial | cut -d: -f3)
-	echo "USER_UID variable not specified, defaulting to dropbox user id ($USER_UID)"
+	echo "USER_UID variable not specified, defaulting to tutorial user id ($USER_UID)"
 fi
 
 if [ -z "$USER_GID" ]; then
 	USER_GID=$(cat /etc/group | grep tutorial | cut -d: -f3)
-	echo "USER_GID variable not specified, defaulting to dropbox user group id ($USER_GID)"
+	echo "USER_GID variable not specified, defaulting to tutorial user group id ($USER_GID)"
 fi
 
 # Look for existing group, if not found create group "tutorial" with specified GID.
