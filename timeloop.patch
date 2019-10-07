@@ -1,0 +1,15 @@
+diff --git a/src/SConscript b/src/SConscript
+index 058afe8..52b7d38 100644
+--- a/src/SConscript
++++ b/src/SConscript
+@@ -32,8 +32,8 @@ Import('env')
+ env.Append(CPPDEFINES = [('BUILD_BASE_DIR', '\\"' + env["BUILD_BASE_DIR"] + '\\"')])
+ env.Append(CPPPATH = ['src/include'])
+ env.Append(CCFLAGS = ['-Werror', '-Wall', '-Wextra', '-fmax-errors=1', '-std=c++14', '-pthread'])
+-env.Append(LINKFLAGS = ['-std=c++11', '-pthread', '-static-libgcc', '-static-libstdc++'])
+-env.Append(LIBS = ['config++', 'yaml-cpp', 'ncurses'])
++env.Append(LINKFLAGS = ['-std=c++11', '-pthread', '-static-libgcc', '-static-libstdc++', '-static'])
++env.Append(LIBS = ['config++', 'yaml-cpp', 'ncurses', 'tinfo', 'gpm'])
+ env.Append(LIBS = ['boost_iostreams', 'boost_serialization'])
+ 
+ if os.environ.get('BOOSTDIR'):
