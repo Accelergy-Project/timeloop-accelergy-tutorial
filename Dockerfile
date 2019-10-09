@@ -43,6 +43,8 @@ WORKDIR $BUILD_DIR
 
 COPY timeloop.patch /tmp
 
+ENV ACCELERGYPATH=/usr/local/bin/
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
                g++ \
