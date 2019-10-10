@@ -41,7 +41,6 @@ RUN apt-get update \
 
 WORKDIR $BUILD_DIR
 
-COPY timeloop.patch /tmp
 
 ENV ACCELERGYPATH=/usr/local/bin/
 
@@ -61,8 +60,7 @@ RUN apt-get update \
     && cd ./timeloop/src \
     && ln -s ../pat-public/src/pat . \
     && cd .. \
-    && patch -p1 </tmp/timeloop.patch \
-    && scons \
+    && scons --static \
     && cp build/timeloop-mapper  /usr/local/bin \
     && cp build/timeloop-metrics /usr/local/bin \
     && cp build/timeloop-model   /usr/local/bin \
