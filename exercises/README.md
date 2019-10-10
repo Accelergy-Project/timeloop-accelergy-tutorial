@@ -7,7 +7,7 @@ explore both Timeloop and Accelergy.
 To try out a simple example do the following:
 
 ```
-    cd  exercises/timeloop/01-model-conv1d-2level
+    cd  exercises/timeloop/01-model-conv1d-1level
     timeloop-model *.yaml
     cat *.map.txt
 ```
