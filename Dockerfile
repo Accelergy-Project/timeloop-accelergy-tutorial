@@ -63,8 +63,9 @@ RUN apt-get update \
     && cd .. \
     && patch -p1 </tmp/timeloop.patch \
     && scons \
-    && cp build/timeloop /usr/local/bin \
-    && cp build/evaluator /usr/local/bin \
+    && cp build/timeloop-mapper  /usr/local/bin \
+    && cp build/timeloop-metrics /usr/local/bin \
+    && cp build/timeloop-model   /usr/local/bin \
     && apt-get remove -y \
                g++ \
                libconfig++-dev \
@@ -103,8 +104,9 @@ ENV LC_ALL en_US.UTF-8
 
 WORKDIR $BUILD_DIR
 
-COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop /usr/local/bin
-COPY --from=builder  $BUILD_DIR/timeloop/build/evaluator /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-mapper  /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model  /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
