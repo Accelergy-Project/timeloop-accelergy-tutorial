@@ -130,6 +130,7 @@ RUN pip3 install setuptools \
 
 
 COPY ./exercises /usr/local/share/tutorial/exercises
+COPY ./bin/refresh-exercises /usr/local/bin
 
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
