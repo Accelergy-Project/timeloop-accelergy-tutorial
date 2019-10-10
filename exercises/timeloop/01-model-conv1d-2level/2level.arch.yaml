@@ -22,7 +22,7 @@ architecture:
       - name: Buffer
         class: regfile
         attributes:
-          depth: 8
+          depth: 64
           width: 8
           block-size: 1
           word-bits: 8

@@ -41,7 +41,6 @@ RUN apt-get update \
 
 WORKDIR $BUILD_DIR
 
-COPY timeloop.patch /tmp
 
 ENV ACCELERGYPATH=/usr/local/bin/
 
@@ -61,10 +60,10 @@ RUN apt-get update \
     && cd ./timeloop/src \
     && ln -s ../pat-public/src/pat . \
     && cd .. \
-    && patch -p1 </tmp/timeloop.patch \
-    && scons \
-    && cp build/timeloop /usr/local/bin \
-    && cp build/evaluator /usr/local/bin \
+    && scons --static \
+    && cp build/timeloop-mapper  /usr/local/bin \
+    && cp build/timeloop-metrics /usr/local/bin \
+    && cp build/timeloop-model   /usr/local/bin \
     && apt-get remove -y \
                g++ \
                libconfig++-dev \
@@ -103,8 +102,9 @@ ENV LC_ALL en_US.UTF-8
 
 WORKDIR $BUILD_DIR
 
-COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop /usr/local/bin
-COPY --from=builder  $BUILD_DIR/timeloop/build/evaluator /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-mapper  /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model  /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
@@ -128,6 +128,7 @@ RUN pip3 install setuptools \
 
 
 COPY ./exercises /usr/local/share/tutorial/exercises
+COPY ./bin/refresh-exercises /usr/local/bin
 
 COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
