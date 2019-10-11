@@ -23,7 +23,7 @@ If you are using a new Docker container and want to update your exercises,
 then when running the container type:
 
 ```
-       % refresh-exercises
+      % refresh-exercises
 ```
 
 
@@ -31,5 +31,7 @@ Build the container
 --------------------
 
 ```
-        % make build [BUILD_FLAGS="--no-cache"]
+      % git clone --recursesubmodules https://github.com/jsemer/timeloop-accelergy-tutorial.git
+      % cd timeloop-accelergy-tutorial
+      % make build [BUILD_FLAGS="<Docker build flags, e.g., --no-cache>"]
 ```

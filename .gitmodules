@@ -1,0 +1,3 @@
+[submodule "timeloop-accelergy-exercises"]
+	path = timeloop-accelergy-exercises
+	url = https://github.com/jsemer/timeloop-accelergy-exercises.git

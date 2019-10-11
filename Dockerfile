@@ -104,12 +104,13 @@ WORKDIR $BUILD_DIR
 COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-mapper  /usr/local/bin
 COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics /usr/local/bin
 COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model  /usr/local/bin
-COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
-COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
 # Accelergy
 
 WORKDIR $BUILD_DIR
+
+COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
+COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
 RUN pip3 install setuptools \
     && pip3 install wheel \
@@ -132,9 +133,7 @@ RUN pip3 install setuptools \
 
 WORKDIR $BUILD_DIR
 
-RUN git clone https://github.com/jsemer/timeloop-accelergy-exercises.git \
-    && chown -R 777 ./timeloop-accelergy-exercises
-
+COPY ./timeloop-accelergy-exercises $BUILD_DIR/timeloop-accelergy-exercises
 COPY ./bin/refresh-exercises /usr/local/bin
 
 COPY docker-entrypoint.sh /usr/local/bin
