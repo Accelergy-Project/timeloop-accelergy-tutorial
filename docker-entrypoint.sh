@@ -41,6 +41,9 @@ then
     more /home/tutorial/exercises/README.md
 fi
 
+# Default environment variable for Timeloop
+export TIMELOOP_ACCURATE_READS_WITU=1
+
 #if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]
 if [ "$@" != "bash" ] 
 then
