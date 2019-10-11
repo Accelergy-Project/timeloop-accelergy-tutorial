@@ -1,3 +1,18 @@
 [submodule "timeloop-accelergy-exercises"]
-	path = timeloop-accelergy-exercises
+	path = src/timeloop-accelergy-exercises
 	url = https://github.com/jsemer/timeloop-accelergy-exercises.git
+[submodule "src/cacti"]
+	path = src/cacti
+	url = https://github.com/HewlettPackard/cacti.git
+[submodule "src/timeloop"]
+	path = src/timeloop
+	url = https://github.com/NVlabs/timeloop.git
+[submodule "src/accelergy"]
+	path = src/accelergy
+	url = https://github.com/nelliewu95/accelergy.git
+[submodule "src/accelergy-aladdin-plug-in"]
+	path = src/accelergy-aladdin-plug-in
+	url = https://github.com/nelliewu95/accelergy-aladdin-plug-in.git
+[submodule "src/accelergy-cacti-plug-in"]
+	path = src/accelergy-cacti-plug-in
+	url = https://github.com/nelliewu95/accelergy-cacti-plug-in.git
