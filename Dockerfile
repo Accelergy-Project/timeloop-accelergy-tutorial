@@ -97,8 +97,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
-
-# Accelergy
+# Get tools built in other containers
 
 WORKDIR $BUILD_DIR
 
@@ -107,6 +106,10 @@ COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics /usr/local/bin
 COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model  /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
 COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
+
+# Accelergy
+
+WORKDIR $BUILD_DIR
 
 RUN pip3 install setuptools \
     && pip3 install wheel \
@@ -123,11 +126,15 @@ RUN pip3 install setuptools \
     && git clone https://github.com/nelliewu95/accelergy-cacti-plug-in.git \
     && cd accelergy-cacti-plug-in \
     && pip3 install . \
-    && chmod 777 /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti \
-    && cd ..
+    && chmod 777 /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
+# Exercises
 
-COPY ./exercises /usr/local/share/tutorial/exercises
+WORKDIR $BUILD_DIR
+
+RUN git clone https://github.com/jsemer/timeloop-accelergy-exercises.git \
+    && chown -R 777 ./timeloop-accelergy-exercises
+
 COPY ./bin/refresh-exercises /usr/local/bin
 
 COPY docker-entrypoint.sh /usr/local/bin

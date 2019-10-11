@@ -28,7 +28,7 @@ usermod -u $USER_UID -g $USER_GID --non-unique tutorial > /dev/null 2>&1
 # change ownership of files in "tutorial" home
 if [ ! -d /home/tutorial/exercises ]
 then
-   cp -r /usr/local/share/tutorial/exercises /home/tutorial
+   cp -r /usr/local/src/timeloop-accelergy-exercises/exercises /home/tutorial
    chown -R $USER_UID:$USER_GID /home/tutorial/exercises
 fi
 

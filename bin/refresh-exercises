@@ -1,3 +1,5 @@
 #!/bin/sh
 
-cp -r /usr/local/share/tutorial/exercises .
+cd /usr/local/src/timeloop-accelergy-exercises
+git pull
+cp -r ./exercises /home/tutorial/
