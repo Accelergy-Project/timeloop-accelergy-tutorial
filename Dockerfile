@@ -54,6 +54,7 @@ RUN apt-get update \
     && cd ./timeloop/src \
     && ln -s ../pat-public/src/pat . \
     && cd .. \
+    && export ACCELERGYPATH=/usr/local/bin \
     && scons --static \
     && cp build/timeloop-mapper  /usr/local/bin \
     && cp build/timeloop-metrics /usr/local/bin \
