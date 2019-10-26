@@ -35,8 +35,7 @@ Build procedure
     cd ../timeloop
     cd src/
     ln -s ../pat-public/src/pat .
-    export ACCELERGYPATH=/home/${USER}/.local/bin/
-    scons -j4
+    scons --accelergy -j4
     cp build/timeloop-* ~/.local/bin
 ```
 
