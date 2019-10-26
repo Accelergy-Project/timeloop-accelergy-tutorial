@@ -11,13 +11,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && if [ ! -d $BUILD_DIR ]; then mkdir $BUILD_DIR; fi
 
-# Set up locale
-
-RUN locale-gen en_US.UTF-8  
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
-
 # Cacti
 
 WORKDIR $BUILD_DIR
@@ -83,11 +76,12 @@ LABEL org.label-schema.vendor="Emer"
 LABEL org.label-schema.version=$BUILD_VERSION
 LABEL org.label-schema.docker.cmd="docker run -it --rm -v ~/tutorial:/home/tutorial jsemer/timeloop-accelergy-tutorial"
 
+ENV BIN_DIR=/usr/local/bin
 ENV BUILD_DIR=/usr/local/src
+ENV SHARE_DIR=/usr/local/share
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-               locales \
                git \
                python3-pip \
     && rm -rf /var/lib/apt/lists/* \
@@ -95,21 +89,14 @@ RUN apt-get update \
     && useradd -m -d /home/tutorial -c "Tutorial User Account" -s /usr/sbin/nologin -g tutorial tutorial \
     && if [ ! -d $BUILD_DIR ]; then mkdir $BUILD_DIR; fi
 
-# Set up locale
-
-RUN locale-gen en_US.UTF-8  
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
-
 # Get tools built in other containers
 
 WORKDIR $BUILD_DIR
 
-COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-mapper  /usr/local/bin
-COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics /usr/local/bin
-COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model  /usr/local/bin
-COPY --from=builder  $BUILD_DIR/cacti/cacti /usr/local/bin
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-mapper  $BIN_DIR
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-metrics $BIN_DIR
+COPY --from=builder  $BUILD_DIR/timeloop/build/timeloop-model   $BIN_DIR
+COPY --from=builder  $BUILD_DIR/cacti/cacti $BIN_DIR
 
 # Get all source
 
@@ -124,7 +111,7 @@ WORKDIR $BUILD_DIR
 
 # Note source for accelergy was copied in above
 
-COPY --from=builder  $BUILD_DIR/cacti /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
+COPY --from=builder  $BUILD_DIR/cacti $SHARE_DIR/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
 RUN pip3 install setuptools \
     && pip3 install wheel \
@@ -138,18 +125,18 @@ RUN pip3 install setuptools \
     && cd .. \
     && cd accelergy-cacti-plug-in \
     && pip3 install . \
-    && chmod 777 /usr/local/share/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
+    && chmod 777 $SHARE_DIR/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
 # Exercises
 
 WORKDIR $BUILD_DIR
 
 # Actual exercises were copied in above
-COPY ./bin/refresh-exercises /usr/local/bin
+COPY ./bin/refresh-exercises $BIN_DIR
 
 # Set up entrypoint
 
-COPY docker-entrypoint.sh /usr/local/bin
+COPY docker-entrypoint.sh $BIN_DIR
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 WORKDIR /home/tutorial
