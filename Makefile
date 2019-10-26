@@ -32,6 +32,12 @@ push:
 	docker push ${NAME}
  
 
+# Lint the Dockerfile
+
+lint:
+	docker run --rm -i hadolint/hadolint < Dockerfile || true
+
+
 # Login to docker hub
 
 login:
