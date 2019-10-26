@@ -59,9 +59,29 @@ RUN apt-get update \
     && cp build/timeloop-metrics /usr/local/bin \
     && cp build/timeloop-model   /usr/local/bin
 
-
-
+#
+# Main image
+#
 FROM ubuntu:18.04
+
+LABEL maintainer="emer@csail.mit.edu"
+
+# Arguments
+ARG BUILD_DATE
+ARG VCS_REF
+ARG BUILD_VERSION
+
+# Labels
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.name="jsemer/timeloop-accelergy-tutorial"
+LABEL org.label-schema.description="Tutorial exercises for Timeloop/Accelergy tools"
+LABEL org.label-schema.url="http://accelergy.mit.edu/"
+LABEL org.label-schema.vcs-url="https://github.com/jsemer/timeloop-accelergy-tutorial"
+LABEL org.label-schema.vcs-ref=$VCS_REF
+LABEL org.label-schema.vendor="Emer"
+LABEL org.label-schema.version=$BUILD_VERSION
+LABEL org.label-schema.docker.cmd="docker run -it --rm -v ~/tutorial:/home/tutorial jsemer/timeloop-accelergy-tutorial"
 
 ENV BUILD_DIR=/usr/local/src
 

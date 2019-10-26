@@ -1,13 +1,15 @@
 #
 # Ultility Makefile to build/push Docker images
 #
-USER   := jsemer
-REPO   := timeloop-accelergy-tutorial
+VERSION := 0.1
 
-NAME   := ${USER}/${REPO}
-TAG    := $$(git log -1 --pretty=%h)
-IMG    := ${NAME}:${TAG}
-LATEST := ${NAME}:latest
+USER    := jsemer
+REPO    := timeloop-accelergy-tutorial
+
+NAME    := ${USER}/${REPO}
+TAG     := $$(git log -1 --pretty=%h)
+IMG     := ${NAME}:${TAG}
+LATEST  := ${NAME}:latest
 
 
 all:	build
@@ -22,7 +24,11 @@ pull:
 # Build and tag docker image
 
 build:
-	docker build ${BUILD_FLAGS} -t ${IMG} .
+	docker build ${BUILD_FLAGS} \
+          --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+          --build-arg VCS_REF=${TAG} \
+          --build-arg BUILD_VERSION=${VERSION} \
+          -t ${IMG} .
 	docker tag ${IMG} ${LATEST}
  
 
