@@ -1,9 +1,9 @@
 #
 # Ultility Makefile to build/push Docker images
 #
-VERSION := 0.2
+VERSION := 0.1
 
-USER    := nelliewu95
+USER    := jsemer
 REPO    := timeloop-accelergy-tutorial
 
 NAME    := ${USER}/${REPO}
@@ -24,24 +24,24 @@ pull:
 # Build and tag docker image
 
 build:
-	"${DOCKER_EXE}" build ${BUILD_FLAGS} \
+	docker build ${BUILD_FLAGS} \
           --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
           --build-arg VCS_REF=${TAG} \
           --build-arg BUILD_VERSION=${VERSION} \
           -t ${IMG} .
-	"${DOCKER_EXE}" tag ${IMG} ${LATEST}
+	docker tag ${IMG} ${LATEST}
  
 
 # Push docker image
 
 push:
-	"${DOCKER_EXE}" push ${NAME}
+	docker push ${NAME}
  
 
 # Lint the Dockerfile
 
 lint:
-	"${DOCKER_EXE}" run --rm -i hadolint/hadolint < Dockerfile || true
+	docker run --rm -i hadolint/hadolint < Dockerfile || true
 
 
 # Login to docker hub

@@ -57,7 +57,7 @@ RUN apt-get update \
 #
 FROM ubuntu:18.04
 
-LABEL maintainer="nelliewu@mit.edu"
+LABEL maintainer="emer@csail.mit.edu"
 
 # Arguments
 ARG BUILD_DATE
@@ -67,14 +67,14 @@ ARG BUILD_VERSION
 # Labels
 LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.build-date=$BUILD_DATE
-LABEL org.label-schema.name="nelliewu95/timeloop-accelergy-tutorial"
-LABEL org.label-schema.description="Example models/exercises for Timeloop/Accelergy tools"
+LABEL org.label-schema.name="jsemer/timeloop-accelergy-tutorial"
+LABEL org.label-schema.description="Tutorial exercises for Timeloop/Accelergy tools"
 LABEL org.label-schema.url="http://accelergy.mit.edu/"
-LABEL org.label-schema.vcs-url="https://github.com/nelliewu95/timeloop-accelergy-tutorial"
+LABEL org.label-schema.vcs-url="https://github.com/jsemer/timeloop-accelergy-tutorial"
 LABEL org.label-schema.vcs-ref=$VCS_REF
-LABEL org.label-schema.vendor="Wu"
+LABEL org.label-schema.vendor="Emer"
 LABEL org.label-schema.version=$BUILD_VERSION
-LABEL org.label-schema.docker.cmd="docker run -it --rm -v ~/tutorial:/home/tutorial nelliewu95/timeloop-accelergy-tutorial"
+LABEL org.label-schema.docker.cmd="docker run -it --rm -v ~/tutorial:/home/tutorial jsemer/timeloop-accelergy-tutorial"
 
 ENV BIN_DIR=/usr/local/bin
 ENV BUILD_DIR=/usr/local/src
@@ -125,10 +125,7 @@ RUN pip3 install setuptools \
     && cd .. \
     && cd accelergy-cacti-plug-in \
     && pip3 install . \
-    && chmod 777 $SHARE_DIR/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti \
-    && cd .. \
-    && cd accelergy-table-based-plug-in \
-    && pip3 install .
+    && chmod 777 $SHARE_DIR/accelergy/estimation_plug_ins/accelergy-cacti-plug-in/cacti
 
 # Exercises
 
