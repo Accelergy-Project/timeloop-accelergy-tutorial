@@ -22,8 +22,8 @@ version: '3'
 
 services:
   exercises:
-    hostname: micro-19
-    image: jsemer/timeloop-accelergy-tutorial:latest
+    hostname: mit_6825
+    image: nelliewu95/timeloop-accelergy-tutorial:latest
     volumes:
       - ./tutorial:/home/tutorial
     environment:
