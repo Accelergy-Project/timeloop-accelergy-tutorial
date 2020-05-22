@@ -11,7 +11,7 @@ Start the container
 - Edit USER_UID and USER_GID in the file to the desired owner of your files
 - Run the following command:
 ```
-      % docker-compose run --rm exercises 
+      % docker-compose run --rm tutorial 
 ```
 - Follow the directions in the exercise directories
 
@@ -24,13 +24,6 @@ To update the Docker container run:
 ```
      % docker-compose pull
 ````
-
-If you are using a new Docker container or just want to the latest
-copy of the exercises, then start the container and type:
-
-```
-      % refresh-exercises
-```
 
 
 Build the container

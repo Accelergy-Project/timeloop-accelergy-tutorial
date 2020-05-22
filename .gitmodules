@@ -1,18 +1,6 @@
-[submodule "timeloop-accelergy-exercises"]
+[submodule "src/timeloop-accelergy-exercises"]
 	path = src/timeloop-accelergy-exercises
-	url = https://github.com/jsemer/timeloop-accelergy-exercises.git
-[submodule "src/cacti"]
-	path = src/cacti
-	url = https://github.com/HewlettPackard/cacti.git
-[submodule "src/timeloop"]
-	path = src/timeloop
-	url = https://github.com/NVlabs/timeloop.git
-[submodule "src/accelergy"]
-	path = src/accelergy
-	url = https://github.com/nelliewu95/accelergy.git
-[submodule "src/accelergy-aladdin-plug-in"]
-	path = src/accelergy-aladdin-plug-in
-	url = https://github.com/nelliewu95/accelergy-aladdin-plug-in.git
-[submodule "src/accelergy-cacti-plug-in"]
-	path = src/accelergy-cacti-plug-in
-	url = https://github.com/nelliewu95/accelergy-cacti-plug-in.git
+	url = https://github.com/Accelergy-Project/timeloop-accelergy-exercises.git
+[submodule "src/processing-in-memory-example"]
+	path = src/processing-in-memory-example
+	url = https://github.com/Accelergy-Project/processing-in-memory-example.git
