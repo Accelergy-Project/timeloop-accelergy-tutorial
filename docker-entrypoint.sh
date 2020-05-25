@@ -28,7 +28,6 @@ usermod -u $USER_UID -g $USER_GID --non-unique workspace > /dev/null 2>&1
 if [ ! -d /home/workspace/exercises ]
 then
    cp -r /usr/local/src/timeloop-accelergy-exercises/exercises /home/workspace/
-   cp -r /usr/local/src/processing-in-memory-example /home/workspace/
    chown -R $USER_UID:$USER_GID /home/workspace/exercises
 fi
 
@@ -61,7 +60,7 @@ chmod 755 /home/workspace
 
 if [ ! -e /home/workspace/.nointro ]
 then
-    more /home/workspace/README/readme.md
+    more /home/workspace/exercises/README.md
 fi
 
 # Default environment variable for Timeloop
