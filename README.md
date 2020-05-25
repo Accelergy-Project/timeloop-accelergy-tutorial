@@ -11,7 +11,7 @@ Start the container
 - Edit USER_UID and USER_GID in the file to the desired owner of your files
 - Run the following command:
 ```
-      % docker-compose run --rm tutorial 
+      % docker-compose run --rm exercises 
 ```
 - Follow the directions in the exercise directories
 
