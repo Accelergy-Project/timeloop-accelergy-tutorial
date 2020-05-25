@@ -25,12 +25,19 @@ To update the Docker container run:
      % docker-compose pull
 ````
 
+If you are using a new Docker container or just want to the latest
+copy of the exercises, then start the container and type:
+
+```
+      % refresh-exercises
+```
+
 
 Build the container
 --------------------
 
 ```
-      % git clone --recurse-submodules https://github.com/jsemer/timeloop-accelergy-tutorial.git
+      % git clone --recurse-submodules https://github.com/Accelergy-Project/timeloop-accelergy-tutorial.git
       % cd timeloop-accelergy-tutorial
       % make build [BUILD_FLAGS="<Docker build flags, e.g., --no-cache>"]
 ```

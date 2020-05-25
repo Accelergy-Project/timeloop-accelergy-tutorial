@@ -19,7 +19,7 @@
 version: '3'
 
 services:
-  tutorial:
+  exercises:
     hostname: tutorial
     image: nelliewu/tutorial:latest
     volumes:

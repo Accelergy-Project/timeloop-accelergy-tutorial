@@ -31,6 +31,7 @@ ENV BIN_DIR=/usr/local/bin
 WORKDIR $SRC_DIR
 
 COPY src/ $SRC_DIR/
+COPY ./bin/refresh-exercises $BIN_DIR
 
 # Set up entrypoint
 
