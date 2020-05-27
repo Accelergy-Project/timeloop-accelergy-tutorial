@@ -28,7 +28,9 @@ usermod -u $USER_UID -g $USER_GID --non-unique workspace > /dev/null 2>&1
 if [ ! -d /home/workspace/exercises ]
 then
    cp -r /usr/local/src/timeloop-accelergy-exercises/exercises /home/workspace/
+   cp -r /usr/local/src/timeloop-accelergy-exercises/baseline_designs /home/workspace/
    chown -R $USER_UID:$USER_GID /home/workspace/exercises
+   chown -R $USER_UID:$USER_GID /home/workspace/baseline_designs
 fi
 
 # Set shorter prompt name if there is no custom setup in users' own directories
