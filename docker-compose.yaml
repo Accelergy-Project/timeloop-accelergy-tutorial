@@ -13,7 +13,7 @@
 #    3) Cd to the directory containing this file
 #    4) Run the following command:
 #
-#        % docker-compose run infrastructure 
+#        % docker-compose run --rm exercises
 #    
 
 version: '3'
@@ -21,7 +21,7 @@ version: '3'
 services:
   exercises:
     hostname: tutorial
-    image: nelliewu/tutorial:latest
+    image: timeloopaccelergy/tutorial:latest
     volumes:
       - ./workspace:/home/workspace
     environment:

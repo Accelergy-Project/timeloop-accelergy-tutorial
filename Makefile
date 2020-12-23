@@ -3,7 +3,7 @@
 #
 VERSION := 0.2
 
-USER    := nelliewu
+USER    := timeloopaccelergy
 REPO    := tutorial
 
 NAME    := ${USER}/${REPO}
